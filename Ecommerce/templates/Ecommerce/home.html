@@ -1,0 +1,40 @@
+{% extends "Ecommerce/base.html" %}
+{% block content %}
+    {% for p in list_products %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ p.image.url }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <!-- <a class="mr-2" href="#">{{ post.author }}</a> -->
+              <!-- <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small> -->
+            </div>
+            <h2><a class="article-title" href="{% url 'detail' p.pk %}">{{ p.name }}</a></h2>
+            <p class="article-content">{{ p.description }}</p>
+            <h2 class="article-price">{{p.price}}</h2>
+          </div>
+        </article>
+    {% endfor %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <input type="submit" value="create Product">
+    </form>
+
+{% endblock content %}
+ 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6b2week6</title>
+</head>
+<body>
+    <h1> PRODUCT DISPLAY</h1>
+    {% for p in list_products %}
+    <ol><li> {{p}} - {{p.description}} - {{p.category}} - <img height=200 width=100 src={{ p.image.url }} alt=""> - {{p.price}}</li></ol>
+    {% endfor %}
+</body>
+</html> -->
